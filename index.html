@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f766e">
+  <meta name="description" content="Reporte técnico con geolocalización consciente y reutilizable">
+  <title>Geo Reporte</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/png" href="./icons/icon-192.png">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="encabezado">
+    <h1>Geo Reporte</h1>
+    <p>Reportes técnicos con ubicación opcional</p>
+  </header>
+
+  <main class="contenedor">
+    <form id="form-reporte" class="tarjeta">
+      <h2>Nuevo reporte técnico</h2>
+
+      <label for="descripcion">Descripción de la incidencia</label>
+      <textarea id="descripcion" rows="3" required
+        placeholder="Ej. Falla en el aire acondicionado del laboratorio 3"></textarea>
+
+      <button type="button" id="btn-adjuntar" class="btn btn-primario">📍 Adjuntar mi ubicación</button>
+
+      <!-- Paso 1: Explicación contextual (pre-permiso) -->
+      <section id="tarjeta-prepermiso" class="aviso" hidden>
+        <h3>¿Por qué pedimos tu ubicación?</h3>
+        <p>
+          Necesitamos tu ubicación aproximada para adjuntar las coordenadas al reporte técnico
+          y calcular la sucursal más cercana. Se lee una sola vez y no rastreamos tu movimiento.
+        </p>
+        <div class="acciones">
+          <button type="button" id="btn-confirmar-geo" class="btn btn-primario">Compartir mi ubicación</button>
+          <button type="button" id="btn-cancelar-geo" class="btn btn-secundario">Prefiero escribir mi zona</button>
+        </div>
+      </section>
+
+      <p id="estado" class="estado" role="status" aria-live="polite"></p>
+
+      <!-- Resultado + indicador de calidad de señal -->
+      <section id="resultado" class="resultado" hidden>
+        <span id="etiqueta-precision" class="etiqueta"></span>
+        <dl>
+          <dt>Latitud</dt>   <dd id="res-latitud"></dd>
+          <dt>Longitud</dt>  <dd id="res-longitud"></dd>
+          <dt>Precisión</dt> <dd id="res-precision"></dd>
+          <dt>Hora</dt>      <dd id="res-hora"></dd>
+        </dl>
+        <a id="enlace-mapa" href="#" target="_blank" rel="noopener">Ver en el mapa ↗</a>
+      </section>
+
+      <!-- Paso 3: Plan B (degradación elegante) -->
+      <section id="selector-manual" class="aviso" hidden>
+        <h3>Selecciona tu zona manualmente</h3>
+        <p id="ayuda-permiso" class="ayuda" hidden>
+          Para reactivar la ubicación: toca el ícono 🔒 junto a la dirección del navegador →
+          <strong>Permisos</strong> → <strong>Ubicación</strong> → <strong>Permitir</strong>, y recarga la página.
+          En iPhone: Ajustes → Safari → Ubicación.
+        </p>
+        <label for="zona">Zona / ciudad</label>
+        <select id="zona">
+          <option value="">-- Elige una opción --</option>
+          <option value="Emiliano Zapata">Emiliano Zapata</option>
+          <option value="Cuernavaca">Cuernavaca</option>
+          <option value="Jiutepec">Jiutepec</option>
+          <option value="Temixco">Temixco</option>
+          <option value="Ciudad de México">Ciudad de México</option>
+        </select>
+        <label for="direccion">Dirección o referencia (opcional)</label>
+        <input id="direccion" type="text" placeholder="Ej. Edificio D, planta baja">
+      </section>
+
+      <button type="submit" class="btn btn-exito">Enviar reporte</button>
+    </form>
+
+    <section class="tarjeta">
+      <h2>Sucursal más cercana</h2>
+      <p class="nota">
+        Usa una lectura rápida de baja precisión. Al presionar, el navegador puede pedirte
+        permiso para leer tu ubicación aproximada.
+      </p>
+      <button type="button" id="btn-sucursal" class="btn btn-secundario">Buscar sucursal cercana</button>
+      <ul id="lista-sucursales" class="lista"></ul>
+    </section>
+
+    <section id="paquete" class="tarjeta" hidden>
+      <h2>Paquete listo para enviar</h2>
+      <pre id="paquete-json"></pre>
+    </section>
+  </main>
+
+  <script src="./geo-helper.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

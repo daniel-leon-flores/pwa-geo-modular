@@ -1,0 +1,218 @@
+:root {
+  --color-primario: #0f766e;
+  --color-fondo: #f1f5f9;
+  --color-tarjeta: #ffffff;
+  --color-texto: #0f172a;
+  --color-suave: #64748b;
+  --color-borde: #cbd5e1;
+  --color-exito: #15803d;
+  --color-alerta: #b45309;
+  --color-error: #b91c1c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.5;
+}
+
+/* ---------- Encabezado y contenedor ---------- */
+
+.encabezado {
+  background: var(--color-primario);
+  color: #fff;
+  padding: 1.25rem 1rem;
+  text-align: center;
+}
+
+.encabezado h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.encabezado p {
+  margin: 0.25rem 0 0;
+  opacity: 0.9;
+}
+
+.contenedor {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.tarjeta {
+  background: var(--color-tarjeta);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+.tarjeta h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+/* ---------- Formularios y botones ---------- */
+
+label {
+  display: block;
+  font-weight: 600;
+  margin: 0.75rem 0 0.25rem;
+}
+
+textarea,
+select,
+input {
+  width: 100%;
+  padding: 0.6rem;
+  font: inherit;
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.btn-primario {
+  background: var(--color-primario);
+  color: #fff;
+}
+
+.btn-secundario {
+  background: #e2e8f0;
+  color: var(--color-texto);
+}
+
+.btn-exito {
+  background: var(--color-exito);
+  color: #fff;
+}
+
+/* ---------- Pre-permiso y selector manual ---------- */
+
+.aviso {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f0fdfa;
+  border-left: 4px solid var(--color-primario);
+  border-radius: 8px;
+}
+
+.aviso h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.acciones .btn {
+  flex: 1 1 180px;
+}
+
+.ayuda {
+  color: var(--color-alerta);
+  font-size: 0.9rem;
+}
+
+.nota {
+  color: var(--color-suave);
+  font-size: 0.9rem;
+}
+
+/* ---------- Estado y resultado ---------- */
+
+.estado {
+  min-height: 1.5rem;
+  margin: 0.75rem 0 0;
+  font-weight: 500;
+}
+
+.estado.cargando { color: var(--color-suave); }
+.estado.error    { color: var(--color-error); }
+.estado.exito    { color: var(--color-exito); }
+
+.resultado {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+}
+
+.resultado dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 1rem;
+  margin: 0.75rem 0;
+}
+
+.resultado dt {
+  color: var(--color-suave);
+}
+
+.resultado dd {
+  margin: 0;
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.etiqueta {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.etiqueta-alta {
+  background: #dcfce7;
+  color: var(--color-exito);
+}
+
+.etiqueta-aproximada {
+  background: #fef3c7;
+  color: var(--color-alerta);
+}
+
+.lista {
+  padding-left: 1.25rem;
+}
+
+pre {
+  margin: 0;
+  padding: 1rem;
+  background: var(--color-texto);
+  color: #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  overflow-x: auto;
+}
